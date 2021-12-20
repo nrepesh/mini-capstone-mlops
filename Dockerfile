@@ -8,8 +8,9 @@ RUN pip install --upgrade -r requirements.txt
 
 COPY app app/
 
-RUN python app/server.py
+WORKDIR /app
 
 EXPOSE 8080
 
-CMD ["python", "app/server.py", "serve"]
+#ENTRYPOINT ["tail", "-f", "/dev/null"]
+CMD ["python", "app.py"]
