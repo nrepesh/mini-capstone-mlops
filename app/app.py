@@ -7,6 +7,7 @@ from flask_pydantic import validate
 from tensorflow import keras
 import numpy as np
 from labels import labels
+import sys
 
 model = keras.models.load_model('model.h5')
 
@@ -47,6 +48,7 @@ def classify(body: RequestBodyModel):
     prediction_image = np.array(image)
     prediction_image = np.expand_dims(image, axis=0)
     prediction = model.predict(prediction_image)
+    print("num of predictions", len(prediction))
     value = np.argmax(prediction)
     name = mapper(value)
 
@@ -57,4 +59,5 @@ def classify(body: RequestBodyModel):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0')
+    if "serve" in sys.argv:
+        app.run(debug=False, port=5000, host='0.0.0.0')

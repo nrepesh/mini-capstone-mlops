@@ -19,5 +19,5 @@ if __name__ == "__main__":
     query = {'id': 1,
              'b64img': get_image()
              }
-    res = requests.post(f"http://localhost:5000/classify", json=query)
+    res = requests.post(f"http://35.232.7.182:5000/classify", json=query)
     print(res.json())

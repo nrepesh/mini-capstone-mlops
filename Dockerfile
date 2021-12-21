@@ -10,7 +10,8 @@ COPY app app/
 
 WORKDIR /app
 
+RUN python app.py
+
 EXPOSE 8080
 
-#ENTRYPOINT ["tail", "-f", "/dev/null"]
-CMD ["python", "app.py"]
+CMD ["python", "app.py", "serve"]
